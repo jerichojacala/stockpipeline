@@ -109,8 +109,8 @@ def calculate_weighted_pe(ti, z = 1.959963984540054, **context):
     
     total_weight = df["weight"].sum()
 
-    df["weighted_pe_component"] = df["weight"] * total_weight
-    weighted_pe = df["weighted_pe_component"].sum() / df["weight"].sum()
+    df["weighted_pe_component"] = df["pe_ratio"] * (df["weight"] / total_weight)
+    weighted_pe = df["weighted_pe_component"].sum()
     
     #estimate standard deviation of top 10 stocks
     std_top10 = df["pe_ratio"].std()
