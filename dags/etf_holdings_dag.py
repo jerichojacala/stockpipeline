@@ -31,7 +31,7 @@ def fetch_holdings(ti, **context):
     if not data or "holdings" not in data:
         raise ValueError(f"No 'holdings' field found. Response keys: {list(data.keys()) if isinstance(data, dict) else type(data)}")
     
-    num_stocks = 10
+    num_stocks = 0
     # Convert holdings into DataFrame
     holdings_df = pd.DataFrame(data["holdings"])
     holdings_df["weight"] = holdings_df["weight"].astype(float)
@@ -152,7 +152,7 @@ default_args = {
 with DAG(
     dag_id="etf_holdings_pipeline",
     default_args=default_args,
-    schedule_interval="@daily",  # runs once a day
+    schedule_interval="@monthly",  # runs once a day
     catchup=False,
 ) as dag:
 
